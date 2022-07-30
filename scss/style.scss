@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap');
+
+$primary: hsl(172, 67%, 45%);
+$neutral-900: hsl(183, 100%, 15%);
+$neutral-700: hsl(186, 14%, 43%);
+$neutral-400: hsl(184, 14%, 56%);
+$neutral-300: hsl(185, 41%, 84%);
+$neutral-200: hsl(189, 41%, 97%);
+$neutral-100: hsl(0, 0%, 100%);
+
+$font-size: 24px;
+$font-family: "Space Mono", sans-serif;
+$font-weight: 700;
+
+body, input {
+  font-family: $font-family;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  color: $neutral-700;
+  box-sizing: border-box;
+}
+
+.main {
+  background-color: $neutral-300;
+  &__logo {
+    margin: auto;
+    padding: 3rem 0 2rem;
+    display: block;
+  }
+}
+
+.app {
+  padding: 2rem;
+  background-color: $neutral-100;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.section {
+  margin-bottom: 2rem; 
+  padding: 0 .5rem;
+  position: relative;
+  &--dollar::after, &--people::after {
+    content: '';
+    background: url("/images/icon-dollar.svg") no-repeat;
+    display: block;
+    width: 2rem;
+    height: 1.5rem;
+    position: absolute;
+    bottom: .3rem;
+    left: 1rem;
+  }
+  &--people::after {
+    background-image: url("/images/icon-person.svg");
+  }
+  &--grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    & .section__title {
+      grid-column: 1/3;
+      margin-bottom: 0;
+    }
+    & .section__input::placeholder {
+      color: $neutral-700;
+    }
+  }
+  &__title {
+    font-size: .9rem;
+    margin-bottom: .5rem;
+  }
+  &__input {
+    border-radius: 5px;
+    border: none;
+    background-color: $neutral-200;
+    color: $neutral-900;
+    text-align: right;
+    padding: .25rem 1rem;
+    max-width: 100%;
+    &::placeholder {
+      color: $neutral-400;
+    }
+  }
+}
+
+.totals {
+  background-color: $neutral-900;
+  padding: 2rem 1rem 1rem;
+  border-radius: 15px;
+  &__button {
+    background-color: $primary;
+    color: $neutral-900;
+    padding: .75rem;
+    border-radius: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+  }
+}
+
+.amount {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  margin-bottom: 2rem;
+  &__title {
+    font-size: .9rem;
+    color: $neutral-100;
+  }
+  &__subtitle {
+    display: block;
+    margin-top: .5rem;
+    font-size: .7rem;
+    color: $neutral-400;
+  }
+  &__total {
+    text-align: right;
+    font-size: 1.9rem;
+    color: $primary;
+  }
+}
+
+.button {
+  background-color: $neutral-900;
+  color: $neutral-100;
+  border-radius: 5px;
+  padding: .75rem;
+  text-align: center;
+  &--selected {
+    background-color: $primary;
+    color: $neutral-900;
+  }
+}

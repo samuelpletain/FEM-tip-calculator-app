@@ -18,34 +18,44 @@
   <main class="main">
     <img src="images/logo.svg" alt="Splitter Logo" class="main__logo">
     <div class="main__app app">
-      
+      <div class="app__section section section--dollar">
+        <p class="section__title">Bill</p>
+        <input type="text" class="section__input" placeholder="0">
+      </div>
+      <div class="app__section section section--grid">
+        <p class="section__title">Select Tip %</p>
+        <div class="section__button button ">5%</div>
+        <div class="section__button button ">10%</div>
+        <div class="section__button button button--selected">15%</div>
+        <div class="section__button button ">25%</div>
+        <div class="section__button button ">50%</div>
+        <input type="text" class="section__input" placeholder="Custom">
+      </div>
+      <div class="app__section section section--people">
+        <p class="section__title">Number of People</p>
+        <input type="text" class="section__input" placeholder="0">
+      </div>
+      <div class="app__totals totals">
+        <div class="totals__amount amount">
+          <p class="amount__title">Tip Amount
+            <span class="amount__subtitle">/ person</span>
+          </p>
+          <div class="amount__total">$0.00</div>
+        </div>
+        <div class="totals__amount amount">
+          <p class="amount__title">Total
+            <span class="amount__subtitle">/ person</span>
+          </p>
+          <div class="amount__total">$32.79</div>
+        </div>
+        <div class="totals__button">Reset</div>
+      </div>
     </div>
   </main>
-
-  Bill
-
-  Select Tip %
-  5%
-  10%
-  15%
-  25%
-  50%
-  Custom
-
-  Number of People
-
-  Tip Amount
-  / person
-
-  Total
-  / person
-
-  Reset
-  
-  <div class="attribution">
+  <footer class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="#">Samuel Pletain</a>.
-  </div>
+  </footer>
   <script type="module" src="/main.js"></script>
 </body>
 </html>
