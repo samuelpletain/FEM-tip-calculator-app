@@ -20,7 +20,6 @@ Array.from(tipButtons).forEach((element) => {
     } 
     element.classList.add("button--selected")
     tip = parseInt(element.value);
-    console.log(tip)
     calculateTip()
   })
 })
@@ -34,7 +33,6 @@ tipInput.addEventListener("focusout", () => {
     tipInput.value = 0;
   } else {
     tip = parseInt(tipInput.value).toFixed(0)
-    console.log(tip)
     tipInput.value = tip
     calculateTip()
   }
@@ -78,7 +76,6 @@ reset.addEventListener('click', () => {
 })
 
 function calculateTip() {
-  console.log(bill, tip, people)
   if ((people > 0) && (bill > 0) && (tip > -1)) {
     tipAmount.textContent = (bill * tip / 100 / people).toFixed(2)
     total.textContent = ((bill / people) + (bill * tip / 100 / people)).toFixed(2)
