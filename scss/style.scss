@@ -12,6 +12,16 @@ $font-size: 24px;
 $font-family: "Space Mono", sans-serif;
 $font-weight: 700;
 
+@mixin breakpoint {
+  @media only screen and (min-width: 800px) {
+    @content;
+  }
+}
+
+*:focus {
+  outline: none;
+}
+
 body, input {
   font-family: $font-family;
   font-size: $font-size;
@@ -20,12 +30,35 @@ body, input {
   box-sizing: border-box;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .main {
   background-color: $neutral-300;
   &__logo {
     margin: auto;
     padding: 3rem 0 2rem;
     display: block;
+    @include breakpoint() {
+      margin: 0 auto;
+      padding: 0 0 4rem;
+    }
+  }
+  &__title {
+    display: none;
+  }
+  @include breakpoint() {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
   }
 }
 
@@ -34,12 +67,28 @@ body, input {
   background-color: $neutral-100;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  @include breakpoint() {
+    border-radius: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, auto);
+    column-gap: 2rem;
+  }
 }
 
 .section {
   margin-bottom: 2rem; 
   padding: 0 .5rem;
   position: relative;
+  @include breakpoint() {
+    grid-column: 1/2;
+    padding: .5rem 0 0;
+    &--people {
+      margin-bottom: 1rem;
+    }
+  }
   &--dollar::after, &--people::after {
     content: '';
     background: url("/images/icon-dollar.svg") no-repeat;
@@ -48,7 +97,7 @@ body, input {
     height: 1.5rem;
     position: absolute;
     bottom: .3rem;
-    left: 1rem;
+    left: 1.5rem;
   }
   &--people::after {
     background-image: url("/images/icon-person.svg");
@@ -57,9 +106,15 @@ body, input {
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    @include breakpoint() {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
     & .section__title {
       grid-column: 1/3;
       margin-bottom: 0;
+      @include breakpoint() {
+        grid-column: 1/4;
+      }
     }
     & .section__input::placeholder {
       color: $neutral-700;
@@ -76,9 +131,19 @@ body, input {
     color: $neutral-900;
     text-align: right;
     padding: .25rem 1rem;
-    max-width: 100%;
+    width: 100%;
+    border: 2px $neutral-100 solid;
+
+    &:hover, &:focus {
+      border: 2px lighten($primary, 20%) solid;
+      cursor: pointer;
+    }
+
     &::placeholder {
       color: $neutral-400;
+    }
+    @include breakpoint() {
+      font-size: 1.3rem;
     }
   }
 }
@@ -87,14 +152,11 @@ body, input {
   background-color: $neutral-900;
   padding: 2rem 1rem 1rem;
   border-radius: 15px;
-  &__button {
-    background-color: $primary;
-    color: $neutral-900;
-    padding: .75rem;
-    border-radius: 5px;
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 1.2rem;
+  @include breakpoint() {
+    grid-row: 1/4;
+    grid-column: 2/3;
+    padding: 3rem 2rem 2rem;
+    position: relative;
   }
 }
 
@@ -103,6 +165,9 @@ body, input {
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
   margin-bottom: 2rem;
+  @include breakpoint() {
+    margin-bottom: 2.5rem;
+  }
   &__title {
     font-size: .9rem;
     color: $neutral-100;
@@ -117,6 +182,12 @@ body, input {
     text-align: right;
     font-size: 1.9rem;
     color: $primary;
+    @include breakpoint() {
+      font-size: 2.5rem;
+    }
+    &:before {
+      content: '$';
+    }
   }
 }
 
@@ -124,10 +195,47 @@ body, input {
   background-color: $neutral-900;
   color: $neutral-100;
   border-radius: 5px;
-  padding: .75rem;
+  padding: .5rem;
   text-align: center;
-  &--selected {
+  border: none;
+  &:hover {
+    cursor: pointer;
+    background-color: lighten($primary, 20%);
+    color: $neutral-900;
+  }
+  &--selected, &--selected:hover, &--reset {
     background-color: $primary;
     color: $neutral-900;
   }
+  &--reset {
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    padding: .75rem;
+    @include breakpoint() {
+      position: absolute;
+      bottom: 2rem;
+      left: 2rem;
+      right: 2rem;
+    }
+  }
+}
+
+.error {
+  color: lighten(red, 25%);
+  text-align: right;
+  font-size: .9rem;
+  position: absolute;
+  right: .5rem;
+  top: 0;
+  @include breakpoint() {
+    top: .5rem;
+    right: 0;
+  }
+  &--hidden {
+    display: none;
+  }
+}
+
+.input--error {
+  border-color: lighten(red, 25%);
 }

@@ -12,43 +12,47 @@
   <style>
     .attribution { font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+    </style>
+
+  <script type="module" src="/main.js" defer></script>
 </head>
 <body>
   <main class="main">
     <img src="images/logo.svg" alt="Splitter Logo" class="main__logo">
+    <h1 class="main__title">Splitter</h1>
     <div class="main__app app">
       <div class="app__section section section--dollar">
-        <p class="section__title">Bill</p>
-        <input type="text" class="section__input" placeholder="0">
+        <h2 class="section__title">Bill</h2>
+        <input type="number" class="section__input" placeholder="0" step="0.01" id="bill">
       </div>
       <div class="app__section section section--grid">
-        <p class="section__title">Select Tip %</p>
-        <div class="section__button button ">5%</div>
-        <div class="section__button button ">10%</div>
-        <div class="section__button button button--selected">15%</div>
-        <div class="section__button button ">25%</div>
-        <div class="section__button button ">50%</div>
-        <input type="text" class="section__input" placeholder="Custom">
+        <h2 class="section__title">Select Tip %</h2>
+        <input type="button" class="section__button button" value="5%">
+        <input type="button" class="section__button button" value="10%">
+        <input type="button" class="section__button button" value="15%">
+        <input type="button" class="section__button button" value="25%">
+        <input type="button" class="section__button button" value="50%">
+        <input type="number" class="section__input" id="tip" placeholder="Custom">
       </div>
       <div class="app__section section section--people">
-        <p class="section__title">Number of People</p>
-        <input type="text" class="section__input" placeholder="0">
+        <h2 class="section__title">Number of People</h2>
+        <div class="section__error error error--hidden" id="error">Can't be zero</div>
+        <input type="number" class="section__input input" id="people" placeholder="0">
       </div>
       <div class="app__totals totals">
         <div class="totals__amount amount">
           <p class="amount__title">Tip Amount
             <span class="amount__subtitle">/ person</span>
           </p>
-          <div class="amount__total">$0.00</div>
+          <div class="amount__total" id="tip_amount_per_person">0.00</div>
         </div>
         <div class="totals__amount amount">
           <p class="amount__title">Total
             <span class="amount__subtitle">/ person</span>
           </p>
-          <div class="amount__total">$32.79</div>
+          <div class="amount__total" id="total_per_person">0.00</div>
         </div>
-        <div class="totals__button">Reset</div>
+        <div class="totals__button button button--reset button--disabled" id="reset">Reset</div>
       </div>
     </div>
   </main>
@@ -56,6 +60,5 @@
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="#">Samuel Pletain</a>.
   </footer>
-  <script type="module" src="/main.js"></script>
 </body>
 </html>
